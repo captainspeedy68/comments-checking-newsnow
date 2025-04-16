@@ -14,6 +14,7 @@ const Navbar = () => {
             <a className="btn btn-ghost btn-sm">Technology</a>
             <a className="btn btn-ghost btn-sm">Contact</a>
             <Link href={"/comments"} className="btn btn-ghost btn-sm">Comments</Link>
+            <Link href={"/approved"} className="btn btn-ghost btn-sm">Approved Comments</Link>
           </div>
         </div>
       </nav>
