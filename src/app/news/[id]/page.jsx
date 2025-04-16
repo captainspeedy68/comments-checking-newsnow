@@ -36,7 +36,7 @@ const page = async ({ params }) => {
 
           <div className="my-4">
             <img
-              src={null}
+              src={news.imageUrl}
               alt={news.title}
               width={800}
               height={500}

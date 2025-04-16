@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -8,26 +8,50 @@ const CommentSection = () => {
   const [email, setEmail] = useState("");
   const [text, setText] = useState("");
 
-  const handleSubmit = (e) => {
+
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!text.trim()) return;
 
-    const newComment = {
-      id: uuidv4(),  // Generate unique id using uuid
-      email,
-      text,
-      sentiment: 2, // default neutral
-      isHate: false,
-      isStressed: false,
-    };
+    try {
+      // Call your Python API
+      const res = await fetch("http://localhost:8000/predict", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ text }),
+});
 
-    addPendingComment(newComment);
+if (!res.ok) {
+  const errorText = await res.text();
+  throw new Error(`Status ${res.status}: ${errorText}`);
+}
 
-    // Clear form
-    setEmail("");
-    setText("");
-    alert("✅ Comment submitted for review!");
+
+      const data = await res.json();
+      console.log(res);
+      const newComment = {
+        id: uuidv4(),
+        email,
+        text,
+        sentiment: data.Sentiment,
+        isHate: Boolean(data.Hate),
+        isStressed: Boolean(data.Stress_or_Anxiety),
+      };
+
+      addPendingComment(newComment);
+
+      setEmail("");
+      setText("");
+      alert("✅ Comment submitted for review!");
+    } catch (error) {
+      console.error("Error submitting comment:", error);
+      alert("❌ Failed to submit comment for review.");
+    }
   };
 
   return (
