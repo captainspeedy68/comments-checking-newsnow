@@ -50,3 +50,9 @@ export const deletePendingComment = (commentId) => {
   const newPendingComments = pendingComments.filter((comment) => comment.id !== commentId);
   localStorage.setItem(PENDING_KEY, JSON.stringify(newPendingComments));
 };
+
+export const deleteFinalComment = (id) => {
+  const stored = JSON.parse(localStorage.getItem("finalComments")) || [];
+  const updated = stored.filter((comment) => comment.id !== id);
+  localStorage.setItem("finalComments", JSON.stringify(updated));
+};
