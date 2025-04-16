@@ -41,7 +41,7 @@ const AdminCommentsPanel = () => {
               <p className="text-gray-800 font-medium">💬 {comment.text}</p>
               <div className="flex flex-wrap items-center text-sm gap-4">
                 <span className="text-blue-600 capitalize">
-                  Emotion: {comment?.sentiment}
+                  Sentiment: {comment?.sentiment}
                   {console.log(comment)}
                 </span>
                 <span
