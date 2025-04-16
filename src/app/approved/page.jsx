@@ -4,13 +4,13 @@ import React, { useState, useEffect } from "react";
 import { getFinalComments } from "../utils/commentStorage";
 // import { getFinalComments } from "../utils/commentStorage";
 
-const sentimentLabels = [
-  "Very Negative",
-  "Negative",
-  "Neutral",
-  "Positive",
-  "Very Positive",
-];
+// const sentimentLabels = [
+//   "Very Negative",
+//   "Negative",
+//   "Neutral",
+//   "Positive",
+//   "Very Positive",
+// ];
 
 const Page = () => {
   const [comments, setComments] = useState([]);
